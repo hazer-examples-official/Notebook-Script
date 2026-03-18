@@ -1,0 +1,61 @@
+# ============================================================
+# 01 — Not Defteri
+# Kullanılan: işlev, eğer/değilse, ozyinele/içinde,
+#             liste metodları, match/case, dene/yakala/nihayet
+# ============================================================
+
+notlar = []
+
+işlev not_ekle(metin) ise
+    teyit uzunluk(metin) > 0, "Not boş olamaz!"
+    notlar.ekle(metin)
+    yazdir(f"✅ Not eklendi: '{metin}'")
+
+işlev not_sil(indeks) ise
+    dene ise
+        silinen = notlar.cikar(indeks)
+        yazdir(f"🗑️  Silindi: '{silinen}'")
+    yakala IndexError ise
+        yazdir("⚠️  Geçersiz indeks.")
+    nihayet ise
+        yazdir(f"   (Kalan not sayısı: {uzunluk(notlar)})")
+
+işlev notlari_listele() ise
+    eğer uzunluk(notlar) == 0 ise
+        yazdir("📭 Hiç not yok.")
+        döndür
+    yazdir("\n📒 Notlarım:")
+    ozyinele i içinde aralik(uzunluk(notlar)) ise
+        yazdir(f"  [{i}] {notlar[i]}")
+
+işlev icerir_mi(metin, aranan) ise
+    uzunluk_aranan = uzunluk(aranan)
+    eğer uzunluk_aranan == 0 ise
+        döndür Dogru
+    ozyinele i içinde aralik(uzunluk(metin) - uzunluk_aranan + 1) ise
+        eğer metin[i:i + uzunluk_aranan] == aranan ise
+            döndür Dogru
+    döndür Yanlis
+
+işlev ara(anahtar) ise
+    sonuclar = []
+    ozyinele n içinde notlar ise
+        eğer icerir_mi(n.lower(), anahtar.lower()) ise
+            sonuclar.ekle(n)
+    eğer uzunluk(sonuclar) == 0 ise
+        yazdir(f"🔍 '{anahtar}' için sonuç bulunamadı.")
+    değilse ise
+        yazdir(f"🔍 {uzunluk(sonuclar)} sonuç:")
+        ozyinele s içinde sonuclar ise
+            yazdir(f"   → {s}")
+
+# --- Demo ---
+not_ekle("Marketten süt al")
+not_ekle("Projeyi teslim et")
+not_ekle("Kitabı okumayı bitir")
+not_ekle("Marketten ekmek al")
+
+notlari_listele()
+ara("market")
+not_sil(0)
+notlari_listele()
