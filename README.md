@@ -29,7 +29,7 @@ Python'un membership `in` operatörü (`x in y`) Hazer v0.3.0'da expression katm
 ## Çalıştırma
 
 ```bash
-/path/to/hazer/python 01_not_defteri.hazer
+/path/to/hazer/python notebook.hazer
 ```
 
 ## Örnek Çıktı
